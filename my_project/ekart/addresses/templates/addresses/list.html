@@ -1,0 +1,16 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+    <div class="container">
+    <table class="table">
+        <tr>
+            <td><a href="{% url 'address:create_add' %}" class="btn btn-primary">Add new address</a></td></tr>
+
+         {% for add in object_list %}   
+            <tr>
+                <td><a href ="{{add.get_absolute_url}}">{{add.get_address|linebreaks}}</a></td>
+            </tr>
+         {% endfor %}   
+
+    </table>
+</div>
+{% endblock %}

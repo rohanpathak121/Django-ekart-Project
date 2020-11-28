@@ -1,0 +1,23 @@
+
+    {% extends 'layout/layout.html' %}
+    {% block main %}
+
+    <div class="container">
+    <b><i><h1 class="text-center">Welcome to Ekart World.....!</h1></i></b>
+    <h2>
+        {{msg}} 
+        {% if request.user.is_authenticated %}
+        {{request.user}}
+        {% endif %} !
+
+    </h2>
+    
+    {% if bdy %}
+        <h3>{{bdy}}</h3>
+    {% endif %}
+
+    {% if bddy %}
+        <h3>{{bddy}}</h3>
+    {% endif %}
+   </div>
+   {% endblock %}

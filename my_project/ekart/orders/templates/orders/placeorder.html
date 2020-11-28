@@ -1,0 +1,38 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+    <div class="container">
+    {% if order_obj %}
+        <h4>Order Id : {{order_obj.order_id}}</h4>
+        <h4>Sub Total : {{order_obj.order_total}}</h4>
+        <h4>Total : {{order_obj.total}}</h4>
+        {% if order_obj.address %}
+            <h6>
+            {{order_obj.address.get_address | linebreaks}}
+            </h6>
+            {% include 'orders/paynow.html' with obj=order_obj %}
+        {% else %}
+        <div class="row"><div class="col-6">
+            <form method="POST" action="{% url 'address:create' %}">
+                {% csrf_token %}
+                {{address_form}}
+                <input type="hidden" name="red_url" value="{{request.build_absolute_uri}}"/>
+                <input type="submit" value="Add Address" class="btn btn-secondary" />
+            </form></div>
+        <div class="col-6">
+            <h4>Select from Existing Address :</h4>
+            {% include 'addresses/selectAddress.html' with addList=add_list %}
+        </div></div>
+        {% endif %}
+    {% else %}
+        <div class="col-6">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{login_form.as_p}}
+            <input type="hidden" name="red_url" value="{{request.build_absolute_uri}}"/>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="container col-3">
+            {% if msg %}
+
+                <h1>{{msg}}</h1>
+
+            {% endif %}
+            {{form.as_p}}
+            <center><input type="submit" value="Submit" class="btn btn-primary"></center><br>
+        </div>
+    </form>
+        {% endblock %}

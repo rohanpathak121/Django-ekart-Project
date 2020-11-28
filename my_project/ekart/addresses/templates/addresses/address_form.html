@@ -1,0 +1,11 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+    <div class="container">
+    	<!-- write enctype when the form uploads an image or a file-->
+    	<form method = "POST" enctype = "multipart/form-data">
+    	{% csrf_token %}
+    	{{form.as_table}}
+    	<input type="submit" value="Save" class="btn btn-success"/>
+    	</form>
+    </div>
+{% endblock %}

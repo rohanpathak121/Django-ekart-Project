@@ -1,0 +1,52 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+    <div class="container">
+        {% if object.products.all %}
+        <table class="table">
+            <tr>
+                   <th>Product Name</th>
+                   <th></th>
+                   <th>Price</th>
+            </tr> 
+            
+            {% for prod in object.products.all %}
+            <tr>
+                <td>{{prod.title}}</td>
+                <td>{% include 'products/snippets/addtocart.html' with object=prod incart=True %}</td>
+                <td>{{prod.price}}</td>
+
+
+            </tr>    
+            {% endfor %}
+
+            <tr>
+                    <td></td>
+                    <td><b>Sub-total</b></td> 
+                    <td>{{object.sub_total}}</td>   
+             </tr>   
+
+             
+            <tr>
+                <td></td>
+                <td><b>Total</b></td> 
+                <td>{{object.total}}</td>   
+         </tr> 
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td><form method="POST" action="{% url 'order:create' %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Place Order" class="btn btn-primary"></form>
+                </td>
+
+            </tr>   
+
+
+         </table>
+         {% else %}
+            <h1>Cart is Empty</h1>
+         {% endif %}   
+    </div>   
+
+{% endblock %}

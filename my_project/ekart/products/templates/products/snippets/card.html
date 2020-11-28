@@ -1,0 +1,12 @@
+<div class="card" style="width: 15rem; ">
+    {% if obj.image %}
+        <img src="{{obj.image.url}}" class="card-img-top" alt="Product Image" style="width:250px ;height: 250px; align-self: center;">
+    {% endif %} 
+
+    <div class="card-body">
+      <h5 class="card-title">{{obj.title}}</h5>
+      <p class="card-text">{{obj.description | truncatewords:20}}</p>
+      <a href="{{obj.get_detailview_url}}" class="btn btn-primary" >View</a>
+    </div>
+  </div>
+  

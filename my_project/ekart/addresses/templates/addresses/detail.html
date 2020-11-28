@@ -1,0 +1,12 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+	<div class = "container">
+
+		<h4>{{object.id}}</h4>
+		<h4>{{object.get_address|linebreaks}}</h4>
+		<br/>
+		<a href = "{{object.get_update_url}}" class = "btn btn-primary">Update</a>
+		<a href = "#" class = "btn btn-warning">Delete</a>
+
+	</div>
+{% endblock %}

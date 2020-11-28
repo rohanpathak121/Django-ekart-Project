@@ -1,0 +1,14 @@
+{% extends 'layout/layout.html' %}
+{% block main %}
+<div class="container">
+    <div class="card-body" style="align-content:center;">
+        <h5 class="card-title">{{object.title}}</h5>
+        {% include "products/snippets/addtocart.html" with object=object incart=in_cart %}
+    {% if object.image %}
+        <img src="{{object.image.url}}" class="card-img-top" alt="Product Image" style="width: 270px;height: 250px;align-self:center;">
+    {% endif %}
+    <p>{{object.price}}</p>
+    <p class="card-text">{{object.description|linebreaks}}</p>
+    </div>
+</div>
+{% endblock %}
